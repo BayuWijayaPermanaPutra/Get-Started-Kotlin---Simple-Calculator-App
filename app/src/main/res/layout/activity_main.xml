@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="id.co.paytren.latihankotlin.MainActivity">
+
+    <EditText
+        android:id="@+id/main_et_num1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Angka 1" />
+
+    <EditText
+        android:id="@+id/main_et_num2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Angka 2" />
+
+    <RadioGroup
+        android:id="@+id/main_rg_operation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/main_rb_plus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="+" />
+
+        <RadioButton
+            android:id="@+id/main_rb_min"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="-" />
+
+        <RadioButton
+            android:id="@+id/main_rb_kali"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="*" />
+
+        <RadioButton
+            android:id="@+id/main_rb_bagi"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="/" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/main_tv_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/main_btn_hitung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hitung" />
+
+    <TextView
+        android:id="@+id/main_tv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/main_btn_random"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Random" />
+
+</LinearLayout>
+
