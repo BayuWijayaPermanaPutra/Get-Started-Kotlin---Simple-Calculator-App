@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioGroup
-import id.co.paytren.latihankotlin.R.id.*
 
 //ini untuk dapat memanggil varible widget secara langsung di kotlin
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,7 +19,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     main_tv_result.setText(Math.round(hitungResult(typeHitung)).toString())
                 } catch (e: ArithmeticException) {
                     e.printStackTrace()
-                    main_tv_result.setText("Undifined")
+                    main_tv_result.setText("Undefined")
                 }
             }
             main_btn_random -> {
@@ -41,7 +40,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     main_tv_result.setText(Math.round(hitungResult(opr)).toString())
                 } catch (e: ArithmeticException) {
                     e.printStackTrace()
-                    main_tv_result.setText("Undifined")
+                    main_tv_result.setText("Undefined")
                 }
             }
         }
