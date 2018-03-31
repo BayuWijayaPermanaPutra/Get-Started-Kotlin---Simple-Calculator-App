@@ -78,5 +78,10 @@
         android:layout_height="wrap_content"
         android:text="Random" />
 
+    <Button
+        android:id="@+id/main_btn_kirimhasil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kirim Hasil" />
 </LinearLayout>
 

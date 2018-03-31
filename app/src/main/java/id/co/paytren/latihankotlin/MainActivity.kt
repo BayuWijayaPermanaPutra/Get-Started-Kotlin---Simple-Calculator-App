@@ -1,9 +1,11 @@
 package id.co.paytren.latihankotlin
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioGroup
+import android.widget.Toast
 
 //ini untuk dapat memanggil varible widget secara langsung di kotlin
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,19 +24,27 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     main_tv_result.setText("Undefined")
                 }
             }
+            main_btn_kirimhasil -> {
+                if (main_tv_result.text.equals("Undefined") || main_tv_result.text.isEmpty()) {
+                    Toast.makeText(this, "Result is empty", Toast.LENGTH_LONG).show()
+                } else {
+                    val intent = Intent(this, ResultActivity::class.java)
+                    intent.putExtra("result", main_tv_result.text)
+                    startActivity(intent)
+                }
+            }
             main_btn_random -> {
-                main_et_num1.setText(getRandomNumber(0).toString())
-                main_et_num2.setText(getRandomNumber(0).toString())
-                var opr = getRandomNumber(1)
+                main_et_num1.setText(getRandomNumber(ConstantApp.Data.TYPE_RANDOM_NUM).toString())
+                main_et_num2.setText(getRandomNumber(ConstantApp.Data.TYPE_RANDOM_NUM).toString())
+                var opr = getRandomNumber(ConstantApp.Data.TYPE_RANDOM_OPR)
                 when (opr) {
-                    0 -> setPlusOpr()
+                    ConstantApp.Data.TYPE_HITUNG_TAMBAH -> setPlusOpr()
 
-                    1 -> setMinOpr()
+                    ConstantApp.Data.TYPE_HITUNG_KURANG -> setMinOpr()
 
-                    2 -> setKaliOpr()
+                    ConstantApp.Data.TYPE_HITUNG_KALI -> setKaliOpr()
 
-                    3 -> setBagiOpr()
-
+                    ConstantApp.Data.TYPE_HITUNG_BAGI -> setBagiOpr()
                 }
                 try {
                     main_tv_result.setText(Math.round(hitungResult(opr)).toString())
@@ -43,14 +53,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     main_tv_result.setText("Undefined")
                 }
             }
+
         }
     }
 
     fun getRandomNumber(type: Int): Int {
         var rand: Random = Random()
         when (type) {
-            0 -> return rand.nextInt(51)
-            1 -> return rand.nextInt(4)
+            ConstantApp.Data.TYPE_RANDOM_NUM -> return rand.nextInt(51)
+            ConstantApp.Data.TYPE_RANDOM_OPR -> return rand.nextInt(4)
         }
         return 0
     }
@@ -58,16 +69,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     @Throws
     fun hitungResult(typeHitung: Int): Double {
         when (typeHitung) {
-            0 -> {
+            ConstantApp.Data.TYPE_HITUNG_TAMBAH -> {
                 return (Integer.parseInt(main_et_num1.text.toString()) + Integer.parseInt(main_et_num2.text.toString())).toDouble()
             }
-            1 -> {
+            ConstantApp.Data.TYPE_HITUNG_KURANG -> {
                 return (Integer.parseInt(main_et_num1.text.toString()) - Integer.parseInt(main_et_num2.text.toString())).toDouble()
             }
-            2 -> {
+            ConstantApp.Data.TYPE_HITUNG_KALI -> {
                 return (Integer.parseInt(main_et_num1.text.toString()) * Integer.parseInt(main_et_num2.text.toString())).toDouble()
             }
-            3 -> {
+            ConstantApp.Data.TYPE_HITUNG_BAGI -> {
                 return (Integer.parseInt(main_et_num1.text.toString()) / Integer.parseInt(main_et_num2.text.toString())).toDouble()
             }
         }
@@ -89,29 +100,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         main_btn_hitung.setOnClickListener(this)
         main_btn_random.setOnClickListener(this)
+        main_btn_kirimhasil.setOnClickListener(this)
     }
 
     private fun setBagiOpr() {
         main_rb_bagi.isChecked = true
         main_tv_detail.setText(main_et_num1.text.toString() + " / " + main_et_num2.text.toString())
-        typeHitung = 3
+        typeHitung = ConstantApp.Data.TYPE_HITUNG_BAGI
     }
 
     private fun setKaliOpr() {
         main_rb_kali.isChecked = true
         main_tv_detail.setText(main_et_num1.text.toString() + " x " + main_et_num2.text.toString())
-        typeHitung = 2
+        typeHitung = ConstantApp.Data.TYPE_HITUNG_KALI
     }
 
     fun setPlusOpr() {
         main_rb_plus.isChecked = true
         main_tv_detail.setText(main_et_num1.text.toString() + " + " + main_et_num2.text.toString())
-        typeHitung = 0
+        typeHitung = ConstantApp.Data.TYPE_HITUNG_TAMBAH
     }
 
     fun setMinOpr() {
         main_rb_min.isChecked = true
         main_tv_detail.setText(main_et_num1.text.toString() + " - " + main_et_num2.text.toString())
-        typeHitung = 1
+        typeHitung = ConstantApp.Data.TYPE_HITUNG_KURANG
     }
 }
