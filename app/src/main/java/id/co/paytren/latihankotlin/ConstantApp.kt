@@ -23,8 +23,6 @@ class ConstantApp {
 
     object Api {
         @JvmStatic
-        val BASE_URL = "http://newsapi.org/v1/"
-        @JvmStatic
-        val APIKEY_NEWS = "99444ed3af72421c9517047756258b05"
+        val BASE_URL = "https://api.paytren.co.id/"
     }
 }

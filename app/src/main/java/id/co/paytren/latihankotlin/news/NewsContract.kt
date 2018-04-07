@@ -8,14 +8,14 @@ import id.co.paytren.latihankotlin.source.dao.News
  * Created by BayuWPP on 3/31/18.
  */
 class NewsContract{
-    public interface View : BaseView {
+    interface View : BaseView {
         fun showProgress()
         fun hideProgress()
         fun showNews(list: List<News>)
         fun showErrorMessage(message: String)
     }
 
-    public interface Presenter : BasePresenter<View>{
+    interface Presenter : BasePresenter<View>{
         fun getNews()
     }
 }
